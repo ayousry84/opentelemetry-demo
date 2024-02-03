@@ -18,7 +18,9 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 export SPLUNK_HEC_TOKEN=
 export SPLUNK_HEC_URL="http://localhost:8088"
 export SPLUNK_MEMORY_TOTAL_MIB=1024
-export SPLUNK_INDEX_NAME=otel 
+export SPLUNK_TRACES_INDEX_NAME=otel_traces
+export SPLUNK_METRICS_INDEX_NAME=otel_metrics_db
+export SPLUNK_LOGS_INDEX_NAME=otel_logs
 
 function update_root_readme {
     ROOT_README_PATH=${ROOT_README_PATH:-"$SCRIPT_DIR/../README.md"}
@@ -62,7 +64,9 @@ function update_otel_demo_docker {
     yq eval -i '.services.otelcol.environment += [ "SPLUNK_HEC_TOKEN=${SPLUNK_HEC_TOKEN}" ]' "$SPLUNK_DOCKER_COMPOSE_PATH"
     yq eval -i '.services.otelcol.environment += [ "SPLUNK_HEC_URL=${SPLUNK_HEC_URL}" ]' "$SPLUNK_DOCKER_COMPOSE_PATH"
     yq eval -i '.services.otelcol.environment += [ "SPLUNK_MEMORY_TOTAL_MIB=${SPLUNK_MEMORY_TOTAL_MIB}" ]' "$SPLUNK_DOCKER_COMPOSE_PATH"
-    yq eval -i '.services.otelcol.environment += [ "SPLUNK_INDEX_NAME=${SPLUNK_INDEX_NAME}" ]' "$SPLUNK_DOCKER_COMPOSE_PATH"
+    yq eval -i '.services.otelcol.environment += [ "SPLUNK_LOGS_INDEX_NAME=${SPLUNK_LOGS_INDEX_NAME}" ]' "$SPLUNK_DOCKER_COMPOSE_PATH"
+    yq eval -i '.services.otelcol.environment += [ "SPLUNK_METRICS_INDEX_NAME=${SPLUNK_METRICS_INDEX_NAME}" ]' "$SPLUNK_DOCKER_COMPOSE_PATH"
+    yq eval -i '.services.otelcol.environment += [ "SPLUNK_TRACES_INDEX_NAME=${SPLUNK_TRACES_INDEX_NAME}" ]' "$SPLUNK_DOCKER_COMPOSE_PATH"
 
     # update the command used to launch the collector to point to the Splunk-specific config
     yq eval -i '.services.otelcol.command[0] = "--config=/etc/otelcol-config.yml" ' "$SPLUNK_DOCKER_COMPOSE_PATH"
