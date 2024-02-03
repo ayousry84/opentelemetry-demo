@@ -16,7 +16,7 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
 #Add the values for the environment variables
 export SPLUNK_HEC_TOKEN=
-export SPLUNK_HEC_URL="http://localhost:8088/services/collector"
+export SPLUNK_HEC_URL="http://localhost:8088"
 export SPLUNK_MEMORY_TOTAL_MIB=1024
 export SPLUNK_INDEX_NAME=otel 
 
