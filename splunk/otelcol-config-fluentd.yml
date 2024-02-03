@@ -118,7 +118,7 @@ exporters:
     endpoint: "${SPLUNK_HEC_URL}/services/collector"
     source: "otel"
     sourcetype: "otel"
-    index: "astronomyshop"
+    index: "${SPLUNK_INDEX_NAME}"
     profiling_data_enabled: false
 
 service:
