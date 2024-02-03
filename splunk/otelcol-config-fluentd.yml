@@ -131,12 +131,12 @@ service:
     traces:
       receivers: [jaeger, otlp, sapm, zipkin]
       processors: [batch, resourcedetection]
-      exporters: [ sapm, signalfx ]
+      exporters: [splunk_hec/traces]
     metrics:
       receivers: [otlp, signalfx, prometheus, hostmetrics]
       processors: [batch, resourcedetection]
-      exporters: [signalfx]
+      exporters: [splunk_hec/metrics]
     logs:
       receivers: [otlp, signalfx, fluentforward]
       processors: [batch, resourcedetection]
-      exporters: [splunk_hec]
+      exporters: [splunk_hec/logs]
