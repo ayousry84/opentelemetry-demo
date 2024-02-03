@@ -118,7 +118,7 @@ exporters:
     endpoint: "${SPLUNK_HEC_URL}/services/collector"
     source: "otel"
     sourcetype: "otel"
-    index: "astronomyshop"
+    index: "${SPLUNK_INDEX_NAME}"
     profiling_data_enabled: false
 
 service:
@@ -131,11 +131,11 @@ service:
     traces:
       receivers: [jaeger, otlp, sapm, zipkin]
       processors: [batch, resourcedetection]
-      exporters: [ sapm, signalfx ]
+      exporters: [splunk_hec]
     metrics:
       receivers: [otlp, signalfx, prometheus, hostmetrics]
       processors: [batch, resourcedetection]
-      exporters: [signalfx]
+      exporters: [splunk_hec]
     logs:
       receivers: [otlp, signalfx, fluentforward]
       processors: [batch, resourcedetection]
