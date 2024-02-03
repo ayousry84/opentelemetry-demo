@@ -105,15 +105,16 @@ exporters:
     endpoint: "${SPLUNK_HEC_URL}/services/collector"
     source: "otel"
     sourcetype: "_json"
-    index: "${SPLUNK_INDEX_NAME}"
-    profiling_data_enabled: false
+    index: "${SPLUNK_TRACES_INDEX_NAME}"
+    profiling_data_enabled: true
+    log_data_enabled: false
   # Metrics
   splunk_hec/metrics:
     token: "${SPLUNK_HEC_TOKEN}"
     endpoint: "${SPLUNK_HEC_URL}/services/collector"
     source: "otel"
     sourcetype: "log2metrics_json"
-    index: "${SPLUNK_INDEX_NAME}"
+    index: "${SPLUNK_METRICS_INDEX_NAME}"
     profiling_data_enabled: false
   # Logs (can also be used to send traces)
   splunk_hec/logs:
@@ -121,8 +122,9 @@ exporters:
     endpoint: "${SPLUNK_HEC_URL}/services/collector"
     source: "otel"
     sourcetype: "_json"
-    index: "${SPLUNK_INDEX_NAME}"
+    index: "${SPLUNK_LOGS_INDEX_NAME}"
     profiling_data_enabled: false
+    log_data_enabled: true
 
 service:
   extensions: [health_check, http_forwarder, zpages]
