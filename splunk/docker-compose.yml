@@ -660,6 +660,7 @@ services:
       - SPLUNK_HEC_TOKEN=${SPLUNK_HEC_TOKEN}
       - SPLUNK_HEC_URL=${SPLUNK_HEC_URL}
       - SPLUNK_MEMORY_TOTAL_MIB=${SPLUNK_MEMORY_TOTAL_MIB}
+      - SPLUNK_INDEX_NAME=${SPLUNK_INDEX_NAME}
   # Prometheus
   prometheus:
     image: quay.io/prometheus/prometheus:v2.48.1
