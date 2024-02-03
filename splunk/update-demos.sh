@@ -14,6 +14,12 @@ set -euo pipefail
 # Set default paths if environment variables are not set
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
+#Add the values for the environment variables
+export SPLUNK_HEC_TOKEN=
+export SPLUNK_HEC_URL=http://localhost:8088
+export SPLUNK_MEMORY_TOTAL_MIB=1024
+export INDEX_NAME=otel 
+
 function update_root_readme {
     ROOT_README_PATH=${ROOT_README_PATH:-"$SCRIPT_DIR/../README.md"}
 
